@@ -3,14 +3,16 @@ package com.montecastelo.todolist.listas
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.montecastelo.todolist.features.listas.ListasScreen
 
-val ROUTE = "listas_screen"
+const val LISTAS_SCREEN_ROUTE = "listas_screen"
 
 fun NavController.navigateToListasScreen() {
-    navigate(ROUTE)
+    navigate(LISTAS_SCREEN_ROUTE)
 }
 
-fun NavGraphBuilder.listascreen(
-){
-    composable(ROUTE) { ListasScreen() }
+fun NavGraphBuilder.listascreen(){
+    composable(LISTAS_SCREEN_ROUTE) { ListasScreen(
+
+    ) }
 }
