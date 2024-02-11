@@ -23,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.montecastelo.todolist.data.Lista
-import com.montecastelo.todolist.listas.ListasViewModel
 
 @Composable
 fun ListasScreen(viewModel: ListasViewModel = hiltViewModel()){

@@ -1,10 +1,10 @@
-package com.montecastelo.todolist.features.toDo
+package com.montecastelo.todolist.features.todo
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.montecastelo.todolist.listas.navigateToListasScreen
+import com.montecastelo.todolist.features.listas.navigateToListasScreen
 
 const val TODO_SCREEN_ROUTE = "ToDo_screen"
 

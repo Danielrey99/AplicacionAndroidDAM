@@ -1,9 +1,8 @@
-package com.montecastelo.todolist.listas
+package com.montecastelo.todolist.features.listas
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.montecastelo.todolist.features.listas.ListasScreen
 
 const val LISTAS_SCREEN_ROUTE = "listas_screen"
 

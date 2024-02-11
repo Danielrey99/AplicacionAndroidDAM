@@ -1,4 +1,4 @@
-package com.montecastelo.todolist.listas
+package com.montecastelo.todolist.features.listas
 
 import androidx.lifecycle.ViewModel
 import com.montecastelo.todolist.R
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListasViewModel @Inject constructor() :ViewModel() {
-    var _state = MutableStateFlow<List<Lista>>(listOf())
+    private var _state = MutableStateFlow<List<Lista>>(listOf())
     val state = _state
     init {
         _state.value = listOf(

@@ -28,7 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.montecastelo.todolist.features.addlistas.ADD_LISTAS_SCREEN_ROUTE
 import com.montecastelo.todolist.features.addlistas.navigateToAddListasScreen
-import com.montecastelo.todolist.listas.LISTAS_SCREEN_ROUTE
+import com.montecastelo.todolist.features.listas.LISTAS_SCREEN_ROUTE
 import com.montecastelo.todolist.navigation.Navigation
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,13 +39,13 @@ fun AppScreen(){
 
     Scaffold(
         topBar = {
-            WorkoutsTopAppBar(navController = navController)
+            ToDoListTopAppBar(navController = navController)
         },
         bottomBar = {
-            WorkoutsBottomAppBar()
+            ToDoListBottomAppBar()
         },
         floatingActionButton = {
-            WorkoutsFloatingActionButton(navController)
+            ToDoListFloatingActionButton(navController)
         },
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)){
@@ -56,7 +56,7 @@ fun AppScreen(){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WorkoutsTopAppBar(
+fun ToDoListTopAppBar(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ){
@@ -79,7 +79,7 @@ fun WorkoutsTopAppBar(
 }
 
 @Composable
-fun WorkoutsBottomAppBar(
+fun ToDoListBottomAppBar(
     modifier: Modifier = Modifier
 ){
     BottomAppBar(
@@ -99,7 +99,7 @@ fun WorkoutsBottomAppBar(
 }
 
 @Composable
-fun WorkoutsFloatingActionButton(
+fun ToDoListFloatingActionButton(
     navController: NavController,
 ){
     FloatingActionButton(onClick = {

@@ -1,4 +1,4 @@
-package com.montecastelo.todolist.features.toDo
+package com.montecastelo.todolist.features.todo
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.montecastelo.todolist.data.Lista
-import com.montecastelo.todolist.listas.ListasViewModel
+import com.montecastelo.todolist.features.listas.ListasViewModel
 import com.montecastelo.todolist.ui.theme.ToDoListTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 
