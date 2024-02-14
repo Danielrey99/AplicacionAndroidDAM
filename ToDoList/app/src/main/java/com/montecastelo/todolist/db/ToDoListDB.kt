@@ -13,7 +13,7 @@ object ToDoBDScheme: BaseColumns {
 
 const val SQL_CREATE_ENTRIES = """
     CREATE TABLE ${ToDoBDScheme.TABLE_NAME} (
-    ${ToDoBDScheme.COLUMN_ID} TEXT PRIMARY KEY,
+    ${ToDoBDScheme.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
     ${ToDoBDScheme.COLUMN_IMAGE} INTEGER,
     ${ToDoBDScheme.COLUMN_NAME} TEXT,
     ${ToDoBDScheme.COLUMN_PROYECTO} TEXT,

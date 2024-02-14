@@ -27,7 +27,7 @@ class ListasRepository @Inject constructor(
             while (moveToNext()) {
                 listas.add(
                     Lista(
-                        id = getString(getColumnIndexOrThrow(ToDoBDScheme.COLUMN_ID)),
+                        id = getInt(getColumnIndexOrThrow(ToDoBDScheme.COLUMN_ID)),
                         imageResourceId = getInt(getColumnIndexOrThrow(ToDoBDScheme.COLUMN_IMAGE)),
                         name = getString(getColumnIndexOrThrow(ToDoBDScheme.COLUMN_NAME)),
                         proyecto = getString(getColumnIndexOrThrow(ToDoBDScheme.COLUMN_PROYECTO)),
@@ -40,13 +40,12 @@ class ListasRepository @Inject constructor(
         return listas.toList()
     }
 
-    fun guardarLista(lista: Lista) {
+    fun guardarLista(imageResourceId: Int, name: String, proyecto: String, descripcion: String) {
         val values = ContentValues().apply {
-            put(ToDoBDScheme.COLUMN_ID, lista.id)
-            put(ToDoBDScheme.COLUMN_IMAGE, lista.imageResourceId)
-            put(ToDoBDScheme.COLUMN_NAME, lista.name)
-            put(ToDoBDScheme.COLUMN_PROYECTO, lista.proyecto)
-            put(ToDoBDScheme.COLUMN_DESCRIPCION, lista.descripcion)
+            put(ToDoBDScheme.COLUMN_IMAGE, imageResourceId)
+            put(ToDoBDScheme.COLUMN_NAME, name)
+            put(ToDoBDScheme.COLUMN_PROYECTO, proyecto)
+            put(ToDoBDScheme.COLUMN_DESCRIPCION, descripcion)
         }
         writableDB.insert(ToDoBDScheme.TABLE_NAME, null, values)
     }

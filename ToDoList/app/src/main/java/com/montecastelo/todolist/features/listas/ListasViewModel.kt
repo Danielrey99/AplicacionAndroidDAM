@@ -18,8 +18,4 @@ class ListasViewModel @Inject constructor(
     init {
         _state.value = repository.getListas()
     }
-
-    fun guardarLista(lista: Lista) {
-        repository.guardarLista(lista)
-    }
 }
