@@ -28,7 +28,7 @@ import com.montecastelo.todolist.data.Lista
 fun ListasScreen(viewModel: ListasViewModel = hiltViewModel()){
     //var state = viewModel.state.collectAsState()
     //ListasContent(state.value)
-    val state = viewModel.state.collectAsState().value.filter { it.id == 1 }
+    val state = viewModel.state.collectAsState().value.filter { it.id == "1" }
     ListasContent(state)
 
 }
