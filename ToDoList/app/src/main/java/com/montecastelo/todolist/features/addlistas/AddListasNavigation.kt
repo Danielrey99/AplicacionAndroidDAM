@@ -10,7 +10,6 @@ fun NavController.navigateToAddListasScreen() {
     navigate(ADD_LISTAS_SCREEN_ROUTE)
 }
 
-fun NavGraphBuilder.addlistascreen(
-){
+fun NavGraphBuilder.addlistascreen() {
     composable(ADD_LISTAS_SCREEN_ROUTE) { AddListasScreen() }
 }

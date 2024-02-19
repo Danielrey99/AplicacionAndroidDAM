@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Add
 import androidx.compose.material.icons.twotone.DateRange
 import androidx.compose.material.icons.twotone.Home
+import androidx.compose.material.icons.twotone.List
 import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -29,7 +30,12 @@ import androidx.navigation.compose.rememberNavController
 import com.montecastelo.todolist.features.addlistas.ADD_LISTAS_SCREEN_ROUTE
 import com.montecastelo.todolist.features.addlistas.navigateToAddListasScreen
 import com.montecastelo.todolist.features.listas.LISTAS_SCREEN_ROUTE
+import com.montecastelo.todolist.features.todo.navigateToToDoScreen
 import com.montecastelo.todolist.navigation.Navigation
+import com.montecastelo.todolist.room.features.addlistas.ADD_LISTAS_ROOM_SCREEN_ROUTE
+import com.montecastelo.todolist.room.features.addlistas.navigateToAddListasRoomScreen
+import com.montecastelo.todolist.room.features.listas.TODO_ROOM_SCREEN_ROUTE
+import com.montecastelo.todolist.room.features.listas.navigateToToDoRoomScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,12 +45,15 @@ fun AppScreen(){
 
     Scaffold(
         topBar = {
+            // Cambiamos el titulo para cada ruta
             ToDoListTopAppBar(navController = navController)
         },
         bottomBar = {
-            ToDoListBottomAppBar()
+            // Cambiamos de vista con los iconos
+            ToDoListBottomAppBar(navController = navController)
         },
         floatingActionButton = {
+            // Accedemos a AddLista con SQLite
             ToDoListFloatingActionButton(navController)
         },
     ) { paddingValues ->
@@ -60,12 +69,14 @@ fun ToDoListTopAppBar(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ){
-    var titleText by remember { mutableStateOf("To Do List")}
+    var titleText by remember { mutableStateOf("To Do List SQLite")}
     navController.addOnDestinationChangedListener { _, destination, _ ->
         titleText = when(destination.route){
-            LISTAS_SCREEN_ROUTE -> "Lista"
-            ADD_LISTAS_SCREEN_ROUTE -> "Add Lista"
-            else -> "To Do List"
+            LISTAS_SCREEN_ROUTE -> "Lista SQLite"
+            ADD_LISTAS_SCREEN_ROUTE -> "Add Lista SQLite"
+            TODO_ROOM_SCREEN_ROUTE -> "To Do List Room"
+            ADD_LISTAS_ROOM_SCREEN_ROUTE -> "Add Lista Room"
+            else -> "To Do List SQLite"
         }
     }
     CenterAlignedTopAppBar(
@@ -80,19 +91,26 @@ fun ToDoListTopAppBar(
 
 @Composable
 fun ToDoListBottomAppBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController
 ){
     BottomAppBar(
         modifier = modifier,
         actions = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                navController.navigateToToDoScreen()
+            }) {
                 Icon(imageVector = Icons.TwoTone.Home, contentDescription = "Icon Home")
             }
-            IconButton(onClick = {}) {
-                Icon(imageVector = Icons.TwoTone.DateRange, contentDescription = "Icon Calendar")
+            IconButton(onClick = {
+                navController.navigateToToDoRoomScreen()
+            }) {
+                Icon(imageVector = Icons.TwoTone.List, contentDescription = "Icon Settings")
             }
-            IconButton(onClick = {}) {
-                Icon(imageVector = Icons.TwoTone.Settings, contentDescription = "Icon Settings")
+            IconButton(onClick = {
+                navController.navigateToAddListasRoomScreen()
+            }) {
+                Icon(imageVector = Icons.TwoTone.Add, contentDescription = "Icon Settings")
             }
         },
     )

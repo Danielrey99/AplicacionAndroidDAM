@@ -11,7 +11,5 @@ fun NavController.navigateToListasScreen() {
 }
 
 fun NavGraphBuilder.listascreen(){
-    composable(LISTAS_SCREEN_ROUTE) { ListasScreen(
-
-    ) }
+    composable(LISTAS_SCREEN_ROUTE) { ListasScreen() }
 }

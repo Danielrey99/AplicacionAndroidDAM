@@ -15,8 +15,10 @@ fun NavController.navigateToToDoScreen() {
 fun NavGraphBuilder.todoscreen(
     navController: NavHostController,
 ) {
-    composable(TODO_SCREEN_ROUTE) { ToDoScreen(
-        navigateToListasScreen = {navController.navigateToListasScreen()},
-        //navigateToAddListasScreen = {navController.navigateToAddListasScreen()},
-    ) }
+    composable(TODO_SCREEN_ROUTE) {
+        ToDoScreen(
+            navigateToListasScreen = { navController.navigateToListasScreen() },
+            //navigateToAddListasScreen = {navController.navigateToAddListasScreen()},
+        )
+    }
 }

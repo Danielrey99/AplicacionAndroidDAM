@@ -4,6 +4,8 @@ plugins {
     //Hilt
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    //Room
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -74,4 +76,10 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
+    //Room
+    val room_version = "2.5.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
+    ksp("androidx.room:room-compiler:$room_version")
 }
