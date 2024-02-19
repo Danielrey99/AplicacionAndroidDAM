@@ -1,10 +1,11 @@
 package com.montecastelo.todolist.features.listas
 
 import androidx.lifecycle.ViewModel
-import com.montecastelo.todolist.R
+import androidx.lifecycle.viewModelScope
 import com.montecastelo.todolist.data.Lista
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -15,7 +16,15 @@ class ListasViewModel @Inject constructor(
     private var _state = MutableStateFlow<List<Lista>>(listOf())
     val state = _state
 
+    //Api
+    private var _catState = MutableStateFlow("No hay dato")
+    val catState = _catState
+
     init {
         _state.value = repository.getListas()
+        //Api
+        viewModelScope.launch {
+            _catState.value = repository.getCatsFacts()
+        }
     }
 }

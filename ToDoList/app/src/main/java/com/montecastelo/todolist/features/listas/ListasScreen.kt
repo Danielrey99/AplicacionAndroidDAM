@@ -25,40 +25,70 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.montecastelo.todolist.data.Lista
 
 @Composable
-fun ListasScreen(viewModel: ListasViewModel = hiltViewModel()){
+fun ListasScreen(viewModel: ListasViewModel = hiltViewModel()) {
     //var state = viewModel.state.collectAsState()
     //ListasContent(state.value)
     val state = viewModel.state.collectAsState().value.filter { it.id == 1 }
-    ListasContent(state)
+    val catState = viewModel.catState.collectAsState().value
+    ListasContent(state, catState)
 
 }
 
 @Composable
-fun ListasContent(state : List<Lista> = emptyList()) {
+fun ListasContent(state: List<Lista> = emptyList(), catState: String) {
     Column {
         Row {
             Card(
                 modifier = Modifier.padding(18.dp)
-            ){
-                LazyColumn{
-                    items(state){lista ->
+            ) {
+                LazyColumn {
+                    items(state) { lista ->
                         Lista(lista)
                     }
                 }
+            }
+        }
+        Card(
+            modifier = Modifier.padding(18.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(textAlign = TextAlign.Center, text = "Api:")
+                Text(textAlign = TextAlign.Center, text = catState)
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(textAlign = TextAlign.Center, text = "SharedPreferences")
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(textAlign = TextAlign.Center, text = "DataStore")
             }
         }
     }
 }
 
 @Composable
-fun Lista(lista: Lista){
+fun Lista(lista: Lista) {
     Column(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.Start
     ) {
-        Row{
+        Row {
             Column(
                 horizontalAlignment = Alignment.Start
             ) {
