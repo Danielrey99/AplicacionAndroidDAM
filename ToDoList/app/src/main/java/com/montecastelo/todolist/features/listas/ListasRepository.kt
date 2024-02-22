@@ -2,6 +2,7 @@ package com.montecastelo.todolist.features.listas
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.montecastelo.todolist.api.CatFactResponse
 import com.montecastelo.todolist.api.CatsApi
@@ -60,9 +61,12 @@ class ListasRepository @Inject constructor(
     //Api
     suspend fun getCatsFacts(): String {
         val contentType = "application/json".toMediaType()
+        val json = Json {
+            ignoreUnknownKeys = true
+        }
         val retrofit = Retrofit.Builder()
             .baseUrl("https://cat-fact.herokuapp.com")
-            .addConverterFactory(Json.asConverterFactory(contentType))
+            .addConverterFactory(json.asConverterFactory(contentType))
             .build()
         val api = retrofit.create(CatsApi::class.java)
         val fact: CatFactResponse = api.getCatFact().await()

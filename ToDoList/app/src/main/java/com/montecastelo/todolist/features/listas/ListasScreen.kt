@@ -1,5 +1,6 @@
 package com.montecastelo.todolist.features.listas
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,25 +18,38 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.montecastelo.todolist.data.Lista
 
 @Composable
-fun ListasScreen(viewModel: ListasViewModel = hiltViewModel()) {
-    //var state = viewModel.state.collectAsState()
-    //ListasContent(state.value)
+fun ListasScreen(
+    viewModel: ListasViewModel = hiltViewModel()
+) {
+    //Lista
     val state = viewModel.state.collectAsState().value.filter { it.id == 1 }
+    //Api
     val catState = viewModel.catState.collectAsState().value
-    ListasContent(state, catState)
 
+    //Shared preferences
+    val sharedPref = LocalContext.current.getSharedPreferences("MY_APP_PREFS", Context.MODE_PRIVATE)
+    if (catState != "No hay conexión a internet" && catState != "No hay datos") {
+        sharedPref.edit().putString("CAT_STATE", catState).apply()
+    }
+    val datashared = sharedPref.getString("CAT_STATE", null) ?: "No hay datos"
+
+    ListasContent(state, catState, datashared)
 }
 
 @Composable
-fun ListasContent(state: List<Lista> = emptyList(), catState: String) {
+fun ListasContent(
+    state: List<Lista> = emptyList(),
+    catState: String,
+    datashared: String
+) {
     Column {
         Row {
             Card(
@@ -67,6 +81,7 @@ fun ListasContent(state: List<Lista> = emptyList(), catState: String) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(textAlign = TextAlign.Center, text = "SharedPreferences")
+                Text(textAlign = TextAlign.Center, text = datashared)
             }
             Column(
                 modifier = Modifier
@@ -126,8 +141,8 @@ fun Lista(lista: Lista) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ListScreenPreview() {
-    ListasScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ListScreenPreview() {
+//    ListasScreen()
+//}

@@ -6,6 +6,8 @@ plugins {
     id("com.google.dagger.hilt.android")
     //Room
     id("com.google.devtools.ksp")
+    //Serialization
+    id("kotlinx-serialization")
 }
 
 android {
@@ -96,4 +98,10 @@ dependencies {
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
+    //Data Store
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    // optional - RxJava2 support
+    implementation("androidx.datastore:datastore-preferences-rxjava2:1.0.0")
+    // optional - RxJava3 support
+    implementation("androidx.datastore:datastore-preferences-rxjava3:1.0.0")
 }

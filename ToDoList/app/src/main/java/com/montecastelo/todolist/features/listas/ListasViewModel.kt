@@ -12,19 +12,24 @@ import javax.inject.Inject
 @HiltViewModel
 class ListasViewModel @Inject constructor(
     private val repository: ListasRepository
-) :ViewModel() {
+) : ViewModel() {
     private var _state = MutableStateFlow<List<Lista>>(listOf())
     val state = _state
 
     //Api
-    private var _catState = MutableStateFlow("No hay dato")
+    private var _catState = MutableStateFlow("No hay datos")
     val catState = _catState
 
     init {
         _state.value = repository.getListas()
         //Api
         viewModelScope.launch {
-            _catState.value = repository.getCatsFacts()
+            try {
+                _catState.value = repository.getCatsFacts()
+            }
+            catch (e: Exception){
+                _catState.value = "No hay conexión a internet"
+            }
         }
     }
 }

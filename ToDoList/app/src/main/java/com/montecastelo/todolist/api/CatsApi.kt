@@ -22,11 +22,11 @@ interface CatsApi {
 
 @Serializable
 data class CatFactResponse(
-    val _id: String,
-    val __v: Int,
+    //val _id: String,
+    //val __v: Int,
     val text: String,
-    val updatedAt: String,
-    val deleted: Boolean,
-    val source: String,
-    val sentCount: Int
+    //val updatedAt: String,
+    //val deleted: Boolean,
+    //val source: String,
+    //val sentCount: Int
 )
